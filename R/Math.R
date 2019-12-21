@@ -25,7 +25,7 @@ math_get_baseline <-function(Vect,baseline_hwm=5)
 # p value from winflat
 winflat<-function(xvalue=100,yvalue=99,sizex=100000,sizey=100000)
 {
-  cmd= glue::glue("ssh zhu@172.25.122.75 winflat -xvalue {xvalue} -yvalue {yvalue} -diff {sizex} {sizey}")
+  cmd= glue::glue("ssh yin@172.25.122.75 winflat -xvalue {xvalue} -yvalue {yvalue} -diff {sizex} {sizey}")
   options(warn=-1)
   result=system(cmd,intern = T)
   options(warn=0)
