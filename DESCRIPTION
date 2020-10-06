@@ -20,8 +20,8 @@ Depends:
     stringr,
     matrixStats, ggseqlogo
 Imports:
-    Rcpp,
-    ggplot2,reshape2,dplyr,data.table,readr,BSgenome.Hsapiens.UCSC.hg19,ggseqlogo,
+    Rcpp,BiocManager,
+    ggplot2,reshape2,dplyr,data.table,readr,ggseqlogo,
     BSgenome,
     GenomeInfoDb,
     GenomicRanges,RcppArmadillo,
