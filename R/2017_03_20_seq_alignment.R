@@ -78,16 +78,16 @@ align_AA_UniprotID<-function(UniprotID_vector,outDir=".",filename=NULL,seqNames=
 
 
 
-species_names=qw("human xenopus tomato arabidopsis rice maize")
-hist_H2A=qw("Q6FI13 P06897 P25469 O23628 Q6ZL43 P40280")
-hist_H2B=qw("P62807 P02281 O65821 Q9LQQ4 A3AGM4 P30755")
-hist_H3=qw("P68431 P84233 NA P59226 Q0JCT1 P69246")
-hist_H4=qw("P62805 P62799 P35057 P59259 NA P62787")
-
-
-align_AA_UniprotID(UniprotID_vector = hist_H2A,filename = "hist_H2A",seqNames=species_names)
-align_AA_UniprotID(UniprotID_vector = hist_H2B,filename = "hist_H2B",seqNames=species_names)
-align_AA_UniprotID(UniprotID_vector = hist_H3,filename = "hist_H3",seqNames=species_names)
-align_AA_UniprotID(UniprotID_vector = hist_H4,filename = "hist_H4",seqNames=species_names)
+# species_names=qw("human xenopus tomato arabidopsis rice maize")
+# hist_H2A=qw("Q6FI13 P06897 P25469 O23628 Q6ZL43 P40280")
+# hist_H2B=qw("P62807 P02281 O65821 Q9LQQ4 A3AGM4 P30755")
+# hist_H3=qw("P68431 P84233 NA P59226 Q0JCT1 P69246")
+# hist_H4=qw("P62805 P62799 P35057 P59259 NA P62787")
+#
+#
+# align_AA_UniprotID(UniprotID_vector = hist_H2A,filename = "hist_H2A",seqNames=species_names)
+# align_AA_UniprotID(UniprotID_vector = hist_H2B,filename = "hist_H2B",seqNames=species_names)
+# align_AA_UniprotID(UniprotID_vector = hist_H3,filename = "hist_H3",seqNames=species_names)
+# align_AA_UniprotID(UniprotID_vector = hist_H4,filename = "hist_H4",seqNames=species_names)
 
 
