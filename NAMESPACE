@@ -12,7 +12,6 @@ export("%=%"); export("%=%.lbunch") # for multiple assign
 #               stringr,
 #               entropy,
 #               gtools,motifStack,
-#               BiocParallel,plotly,MASS,QuasR,ggthemes)
+#               BiocParallel,plotly,MASS,QuasR,ggthemes,usethis,gert,iterators,foreach,doParallel)
 
-#pacman::p_load(usethis,gert)
 #devtools::install_github("aquaflakes/fjComm")
