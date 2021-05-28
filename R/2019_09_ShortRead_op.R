@@ -6,12 +6,18 @@ sr_dup_rate<-function(ShortReadObj,isfqfileName=FALSE)
 }
 
 
-getSeq_fqfaFile<-function(file)
-  #getSeq from .fq and .fa files
+
+getSeq_fqfachrFile<-function(file)
+  #getSeq from .fq and .fa or seqonly files
 {
   pacman::p_load(ShortRead)
   head_line=readLines(file,n = 1)
-  if (grepl("@",head_line)) seqs=readFastq(file) else seqs=readFasta(file)
-  seqs@sread %>% as.character()
+  if (grepl("@",head_line)) seqs=readFastq(file) %>% .@sread %>% as.character() else {
+    if(grepl(">",head_line))
+    {
+      seqs=readFasta(file) %>% .@sread %>% as.character()
+    }else seqs=readLines(file)
+  }
+  seqs
 }
 
