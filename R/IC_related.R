@@ -23,6 +23,7 @@ ic_get_2vect_cnt_table <- function(V1,V2,pseudo)
       if(length(type)>1 || (!(type %in% c("freq","foldchn","topMI"))) ) stop("maxBiascalc_elemental: please specify type of calc!!!")
 
       actCnt= ic_get_2vect_cnt_table(V1 = seqMat[,col1], V2 = seqMat[,col2], pseudo = pseudo)
+      # browser()
         if(length(actCnt)==0) return(0)
 
         actFreq= actCnt %>% prop.table
@@ -115,13 +116,11 @@ ic_related_calc <- function (seqs=character(0), kmerLen=2L, filter_for_spacing=T
   if (filter_for_spacing) resultDf= resultDf %>%  dplyr::filter(abs(V2-V1) %in% (kmerLen+spacing)) #== (kmerLen+spacing))
   colnames(resultDf)=c("pos1","pos2")
   punish=0 # -(4^(kmerLen*2)-1)/(2*log(2)*nrow(seqMat)) + 2* ((4^(kmerLen)-1)/(2*log(2)*nrow(seqMat)))
-
-  seqMat= seqMat %>% as.data.frame() %>% mutate_all(funs(factor),levels=eachCol) # to factor, add all possible levels
+  seqMat= seqMat %>% as.data.frame() %>% mutate_all(list(factor),levels=eachCol) # to factor, add all possible levels
 
     # prog bar
     pb <- utils::txtProgressBar(min = 0, max = nrow(resultDf), style = 3); pbCnt=0;
     updateProgressBar <- function(pb){ pbCnt<<- pbCnt+1; Sys.sleep(0.0001); setTxtProgressBar(pb, pbCnt)}
-
   if (type=="MI")
   {
     resultDf$MI= apply(resultDf,1,function(x){   # calc pair-wise

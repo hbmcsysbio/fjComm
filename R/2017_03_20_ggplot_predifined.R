@@ -45,7 +45,7 @@
     legend_col="white"; if (bkcolor=="white") legend_col="black"
     if(is.null(limits)) {limits= dataFrame[[3]] %>% quantile(c(0.005,0.995))} # c(0.2,2) for maxBias
     dataFrame %<>% mutate(pos1_=pos1,pos2_=pos2) %>% mutate(pos1=(pos1_+2+pos2_)/2, pos2=(pos2_-pos1_-3)/2) %>% mutate(id=paste0(pos1_,pos2_))
-    dataFrame %<>% group_by(id) %>% nest() %>% mutate(data=map(data,function(x){ tmp=x[c(1,1,1,1),]; tmp$pos1=x$pos1 %>% {c(.,.+.5,.,.-.5)}; tmp$pos2= x$pos2 %>% {c(.+.5,.,.-.5,.)}; tmp })) %>% unnest(.drop = F)
+    dataFrame %<>% group_by(id) %>% nest() %>% mutate(data=map(data,function(x){ tmp=x[c(1,1,1,1),]; tmp$pos1=x$pos1 %>% {c(.,.+.5,.,.-.5)}; tmp$pos2= x$pos2 %>% {c(.+.5,.,.-.5,.)}; tmp })) %>% unnest(cols = c(data))#unnest(.drop = F)
     p=ggplot()+ theme_bw() + geom_polygon(data = dataFrame, aes(get(names_col[1]),get(names_col[2]),fill = get(names_col[3]),group=id )) +
       labs(x=names_col[1],y=names_col[2])+
       scale_fill_gradientn(colours= grad_colors , na.value="grey",limits=limits, name = names_col[3], oob=scales::squish )+
