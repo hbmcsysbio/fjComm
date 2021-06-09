@@ -12,3 +12,5 @@ parallel <- function(list_or_vect= 1:10, fun= function(x){x}, workers=15, ...)
 }
 
 
+parallel_cmd_gen<-function(cmd="samtools view -c {}",params=c("file1","file2","file3"),threads=8)
+  glue::glue("parallel -j {threads} -k {cmd} ::: ") %>%paste0(paste0(params,collapse = " "))

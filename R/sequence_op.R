@@ -81,6 +81,26 @@ rmdup <- function(seq_df, seq_col_num=1, winsize=20, winNo=2)
   seq_df
 }
 
+rmdup_headtail<-function(seq_df, winsize=18)
+{
+  # file and strings also OK
+  if (typeof(seq_df)=="character"){ if (length(seq_df)==1){ seq_df=read_csv(seq_df,col_names = FALSE)} else {seq_df=data.frame(seq_df,stringsAsFactors = FALSE)}  }
+
+  nrowIni=nrow(seq_df)
+
+  seq_df$sub= stringr::str_sub(seq_df[[1]],1,winsize)
+  seq_df= distinct(seq_df,sub,.keep_all = T)
+
+  seqlen=nchar(seq_df[[1]])
+  seq_df$sub= stringr::str_sub(string = seq_df[[1]],-winsize,seqlen)
+  seq_df= distinct(seq_df,sub,.keep_all = T)
+
+  nrowEnd=nrow(seq_df)
+  print(paste0(nrowIni," input reads",", duplication rate is ",prettyNum((1-nrowEnd/nrowIni)*100, digits=4),"%"))
+  seq_df$sub=NULL
+  seq_df
+}
+
 revComp <- function(str_array){Biostrings::DNAStringSet(str_array) %>% Biostrings::reverseComplement() %>% as.character()}
 
 # only 1 instance for fw and rev, can remove palindromic also

@@ -12,10 +12,10 @@ getSeq_fqfachrFile<-function(file)
 {
   pacman::p_load(ShortRead)
   head_line=readLines(file,n = 1)
-  if (grepl("@",head_line)) seqs=readFastq(file) %>% .@sread %>% as.character() else {
+  if (grepl("@",head_line)) seqs=readFastq(file) %>% {.@sread} %>% as.character() else {
     if(grepl(">",head_line))
     {
-      seqs=readFasta(file) %>% .@sread %>% as.character()
+      seqs=readFasta(file) %>% {.@sread} %>% as.character()
     }else seqs=readLines(file)
   }
   seqs

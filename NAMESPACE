@@ -6,12 +6,13 @@ export("%=%"); export("%=%.lbunch") # for multiple assign
 
 
 # install.packages("pacman")
-#pacman::p_load(BiocManager,data.table,ggplot2, R6,readr,rio,reshape2,magrittr,dplyr,tidyr,stringr,Rcpp,
+#pacman::p_load(tidyverse,BiocManager,data.table,ggplot2, R6,readr,rio,reshape2,magrittr,dplyr,tidyr,stringr,Rcpp,
 #               ggplot2,reshape2,dplyr,data.table,readr,GenomeInfoDb,BSgenome,#BSgenome.Hsapiens.UCSC.hg19,
-#               GenomicRanges,RcppArmadillo,
+#               GenomicRanges,RcppArmadillo,ShortRead,
 #               stringr,
-#               entropy,
+#               entropy,optigrab,
 #               gtools,motifStack,
 #               BiocParallel,plotly,MASS,QuasR,ggthemes,usethis,gert,iterators,foreach,doParallel)
+# devtools::install_github("lianos/seqtools/R/pkg"
 
 #devtools::install_github("aquaflakes/fjComm")
