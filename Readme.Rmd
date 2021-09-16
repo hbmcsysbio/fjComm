@@ -6,6 +6,3 @@ output: html_document
 
 ## PKG Description
 **The utilities used by Fangjie during postdoc periods**
-=======
-The utilities used by Fangjie during postdoc periods
->>>>>>> 835668f6b45746d034cec48c87327cc815dbff86
