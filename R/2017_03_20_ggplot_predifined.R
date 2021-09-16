@@ -16,16 +16,17 @@
   }
 
 # predifined plots
-  gg_heat2D_MI <- function(dataFrame="col1,2 pos, col3 value", grad_colors=gg_heat_rainbow, bkcolor="navy",limits=NULL) # 1st and 2st col are pos info, 3rd col is the value
+  gg_heat2D_MI<-function(dataFrame="col1,2 pos, col3 value", grad_colors=gg_heat_rainbow, bkcolor="navy",limits=NULL) # 1st and 2st col are pos info, 3rd col is the value
   {
     names_col=colnames(dataFrame)
+    names_col=c(names_col,NA,NA,NA,NA,NA)
 
     legend_col="white"; if (bkcolor=="white") legend_col="black"
     if(is.null(limits)) {limits= dataFrame[[3]] %>% quantile(c(0.005,0.995))} # c(0.2,2) for maxBias
 
     meanDiag15= dataFrame %>% dplyr::filter(abs(dataFrame[[2]]-dataFrame[[1]])<=15) %>% .[[3]] %>% mean %>% prettyNum(digits=4)
     anno_grob= grid::grobTree(grid::textGrob(paste0("mean_diag (<=15)\n",meanDiag15),x=0.25, y=0.1, hjust=0, gp= grid::gpar(col=legend_col,fontsize=15,fontface="italic")))
-    disp_text=with(dataFrame, ifelse(is.na(get(names_col[5])),character(0),paste(get(names_col[1]),get(names_col[2]),get(names_col[5]),get(names_col[6]),sep = "_") ))
+    disp_text=with(dataFrame, ifelse(is.na(names_col[5]),paste(get(names_col[1]),get(names_col[2]),get(names_col[3]),sep = "_"),paste(get(names_col[1]),get(names_col[2]),get(names_col[5]),get(names_col[6]),sep = "_") ))
 
     p=ggplot()+ theme_bw() + geom_raster(data = dataFrame, aes(get(names_col[1]),get(names_col[2]),fill = get(names_col[3]),text=disp_text  )) +labs(x=names_col[1],y=names_col[2])+
       scale_fill_gradientn(colours= grad_colors , na.value="grey",limits=limits, name = names_col[3], oob=scales::squish )+
