@@ -69,7 +69,7 @@
     if(is.null(limits)) {limits= dataFrame[[3]] %>% quantile(c(0.005,0.995))} # c(0.2,2) for maxBias
     p=ggplot()+ theme_bw() + geom_raster(data = dataFrame, aes(get(names_col[1]),1,fill = get(names_col[3]))) +labs(x=names_col[1])+
       scale_fill_gradientn(colours= grad_colors , na.value="grey",limits=limits, name = names_col[3], oob=scales::squish )+
-      scale_x_continuous(expand = c(0, 0),position = "bottom", breaks =  gg_breaks(dataFrame[[1]],end_plus_middle=T))+ xlab("(bp)")+ guides(fill=FALSE)+
+      scale_x_continuous(expand = c(0, 0),position = "bottom", breaks =  gg_breaks(dataFrame[[1]],end_plus_middle=T))+ xlab("(bp)")+ guides(fill="none")+
 
       scale_y_continuous(expand = c(0, 0)) +
       theme(axis.text=element_text(size=6),axis.title=element_text(size=13,face="bold"), axis.text.x = element_text(angle = 0, hjust = 0.5), axis.ticks.y = element_blank(), axis.text.y = element_blank(),axis.title.y = element_blank())+
