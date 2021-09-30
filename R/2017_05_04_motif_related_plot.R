@@ -1,8 +1,13 @@
 ggseqlogo_lab_list<-function(mat_list,...)
 {
+  # method=c("probability","bits")
+  # scales = c("free_x","free_y")
+  mat_list=tryCatch(mat_list %>% map(~.x@motif), error = function(e) return(mat_list))
+  mat_list=tryCatch(mat_list %>% map(~.x@profileMatrix), error = function(e) return(mat_list))
   p=mat_list %>% purrr::map(~{set_rownames(as.matrix(.),c("A","C","G","T"))}) %>% ggseqlogo(...)
   p+gg_theme_Publication()+ theme(axis.text.x = element_blank(),axis.ticks.x = element_blank())
 }
+
 
 ggseqlogo_save_A4_pdf <- function(mat_list, filePrefix="motifplots_p", motifs_per_page=60,...)
 {

@@ -15,7 +15,6 @@ Depends:
     ggplot2,
     readr,
     reshape2,
-    magrittr,
     dplyr,
     stringr,
     matrixStats, ggseqlogo
